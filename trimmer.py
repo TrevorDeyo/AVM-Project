@@ -9,7 +9,7 @@ output = "C:\\Users\\tdeyo\\Desktop\\Code\\AVM-Project\\2trimmed_audio\\"
 file_count = sum(len(files) for _, _, files in os.walk(directory_path))
 
 counter = 0
-start_point = 71787
+start_point = 73087
 
 with alive_bar(file_count - start_point) as bar:
     for root, dirs, files in os.walk(directory_path):
@@ -25,8 +25,8 @@ with alive_bar(file_count - start_point) as bar:
                     processed_sound = sum(audio_segments)
 
                     processed_sound.export(f"{output}{counter}.wav", format="wav")
+                    bar()
                 except:
-                    print("failed processing: " + file_path)
+                    print(f"failed processing: {file_path} | Step Number: {counter}")
 
             counter += 1
-            bar()
